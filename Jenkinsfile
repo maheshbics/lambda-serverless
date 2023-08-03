@@ -1,4 +1,4 @@
-def bucket = 'oraculi-terraform-states11'
+def bucket = 'oraculi-terraform-states1'
 def functionName = 'serverless-demo'
 def region = 'ap-south-1'
 def environments = ['develop': 'sandbox', 'preprod': 'staging', 'master': 'production']
