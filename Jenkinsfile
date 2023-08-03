@@ -1,5 +1,5 @@
 def bucket = 'ymkserverless'
-def functionName = 'ServerlessAppDemo'
+def functionName = 'serverless-demo'
 def region = 'ap-south-1'
 def environments = ['develop': 'sandbox', 'preprod': 'staging', 'master': 'production']
 
