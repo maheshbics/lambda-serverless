@@ -21,6 +21,7 @@ node('workers'){
             zip -r deployment.zip main
         """ 
     }
+}
 
     // stage('Push'){
     //     if(env.BRANCH_NAME == 'develop' || env.BRANCH_NAME == 'preprod' || env.BRANCH_NAME == 'master'){
