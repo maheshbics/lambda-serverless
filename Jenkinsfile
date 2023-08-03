@@ -1,7 +1,7 @@
-// def bucket = 'YOUR S3 BUCKET HERE'
-// def functionName = 'ServerlessAppDemo'
-// def region = 'ap-south-1'
-// def environments = ['develop': 'sandbox', 'preprod': 'staging', 'master': 'production']
+def bucket = 'ymkserverless'
+def functionName = 'ServerlessAppDemo'
+def region = 'ap-south-1'
+def environments = ['develop': 'sandbox', 'preprod': 'staging', 'master': 'production']
 
 node('workers'){
     stage('Checkout'){
@@ -21,13 +21,13 @@ node('workers'){
             zip -r deployment.zip main
         """ 
     }
-}
 
-    // stage('Push'){
-    //     if(env.BRANCH_NAME == 'develop' || env.BRANCH_NAME == 'preprod' || env.BRANCH_NAME == 'master'){
-    //         sh "aws s3 cp deployment.zip s3://${bucket}/${functionName}/${environments[env.BRANCH_NAME]}/"
-    //     }
-    // }
+    stage('Push'){
+        if(env.BRANCH_NAME == 'develop' || env.BRANCH_NAME == 'preprod' || env.BRANCH_NAME == 'master'){
+            sh "aws s3 cp deployment.zip s3://${bucket}/${functionName}/${environments[env.BRANCH_NAME]}/"
+        }
+    }
+}
 
 //     stage('Deploy'){
 //         if(env.BRANCH_NAME == 'develop' || env.BRANCH_NAME == 'preprod' || env.BRANCH_NAME == 'master'){
