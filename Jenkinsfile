@@ -34,6 +34,7 @@ node('workers'){
     }
 }
 
+
 //     stage('Deploy'){
 //         if(env.BRANCH_NAME == 'develop' || env.BRANCH_NAME == 'preprod' || env.BRANCH_NAME == 'master'){
 //             sh """
