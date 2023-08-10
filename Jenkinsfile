@@ -1,8 +1,6 @@
 def bucket = 'oraculi-terraform-states7'
 def functionName = 'serverless'
 def region = 'ap-south-1'
-def accesskey = 'AKIA4Z5W7B6H2RONA7NN'
-def secretkey = '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'
 def environments = ['develop': 'sandbox', 'preprod': 'staging', 'master': 'production']
 def s3Uri = 's3://${bucket}/${functionName}/${environments[env.BRANCH_NAME]}/'
 
@@ -26,6 +24,7 @@ node('workers'){
     }
 
     stage('Push'){
+        sh "echo script running"
         if (env.BRANCH_NAME == 'develop' || env.BRANCH_NAME == 'preprod' || env.BRANCH_NAME == 'master')
         sh "aws s3 cp deployment.zip s3://${bucket}/${functionName}/${environments[env.BRANCH_NAME]}/"
         }
