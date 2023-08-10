@@ -26,7 +26,7 @@ node('workers'){
     }
 
     stage('Push'){
-        if(env.BRANCH_NAME == 'develop' || env.BRANCH_NAME == 'preprod' || env.BRANCH_NAME == 'master')
+        if (env.BRANCH_NAME == 'develop' || env.BRANCH_NAME == 'preprod' || env.BRANCH_NAME == 'master')
         sh "aws configure set region $region" 
         sh "aws configure set aws_access_key_id $accesskey"  
         sh "aws configure set aws_secret_access_key $secretkey"
