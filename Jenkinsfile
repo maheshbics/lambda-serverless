@@ -33,7 +33,6 @@ node('workers'){
         sh "aws configure set aws_secret_access_key $secretkey"
         sh "aws s3 cp deployment.zip $s3Uri"
         }
-    }
 
 
     // stage('Deploy'){
@@ -52,4 +51,5 @@ node('workers'){
     //             aws lambda update-alias --function-name ${functionName} --name ${environments[env.BRANCH_NAME]} --function-version \$publishedVersion --region ${region}
     //         """
     //     }
+    // }
     }
