@@ -1,6 +1,8 @@
 def bucket = 'oraculi-terraform-states7'
 def functionName = 'serverless-demo'
 def region = 'ap-south-1'
+// def AWS_ACCESS_KEY_ID = 'AKIA4Z5W7B6H2RONA7NN'
+// def AWS_SECRET_ACCESS_KEY = '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'
 def environments = ['develop': 'sandbox', 'preprod': 'staging', 'master': 'production']
 def s3Uri = 's3://${bucket}/${functionName}/${environments[env.BRANCH_NAME]}/'
 
