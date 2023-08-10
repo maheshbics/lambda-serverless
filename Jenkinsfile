@@ -1,8 +1,8 @@
-// def bucket = 'oraculi-terraform-states11'
-// def functionName = 'serverless-demo'
-// def region = 'ap-south-1'
-// def environments = ['develop': 'sandbox', 'preprod': 'staging', 'master': 'production']
-// def s3Uri = "s3://${bucket}/${functionName}/${environments[env.BRANCH_NAME]}/"
+def bucket = 'oraculi-terraform-states7'
+def functionName = 'serverless-demo'
+def region = 'ap-south-1'
+def environments = ['develop': 'sandbox', 'preprod': 'staging', 'master': 'production']
+def s3Uri = "s3://${bucket}/${functionName}/${environments[env.BRANCH_NAME]}/"
 
 node('workers'){
     stage('Checkout'){
@@ -23,15 +23,15 @@ node('workers'){
         """ 
     }
 
-    // stage('Push'){
-    //     if(env.BRANCH_NAME == 'develop' || env.BRANCH_NAME == 'preprod' || env.BRANCH_NAME == 'master'){
-    //         // sh "aws s3 cp deployment.zip s3://${bucket}/${functionName}/${environments[env.BRANCH_NAME]}/"
-    //         sh """
-    //             aws s3 mb ${s3Uri}
-    //             aws s3 cp deployment.zip ${s3Uri}
-    //         """
-    //     }
-    // }
+    stage('Push'){
+        if(env.BRANCH_NAME == 'develop' || env.BRANCH_NAME == 'preprod' || env.BRANCH_NAME == 'master'){
+            // sh "aws s3 cp deployment.zip s3://${bucket}/${functionName}/${environments[env.BRANCH_NAME]}/"
+            sh """
+                aws s3 mb ${s3Uri}
+                aws s3 cp deployment.zip ${s3Uri}
+            """
+        }
+    }
 }
 
 
