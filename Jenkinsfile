@@ -26,10 +26,10 @@ node('workers'){
     }
 
     stage('Push'){
-       when {
-                expression {
-                    // Specify the branches for which you want to push to S3
-                    return env.BRANCH_NAME == 'develop' || env.BRANCH_NAME == 'preprod' || env.BRANCH_NAME == 'master'
+        when {
+            expression {
+                // Specify the branches for which you want to push to S3
+                return env.BRANCH_NAME == 'develop' || env.BRANCH_NAME == 'preprod' || env.BRANCH_NAME == 'master'
                 }
             }
         }
