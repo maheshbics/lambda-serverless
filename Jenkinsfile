@@ -25,15 +25,15 @@ node('workers'){
         """ 
     }
 
-    stage('Push'){
-        if(env.BRANCH_NAME == 'develop' || env.BRANCH_NAME == 'preprod' || env.BRANCH_NAME == 'master'){
-            // sh "aws s3 cp deployment.zip s3://${bucket}/${functionName}/${environments[env.BRANCH_NAME]}/"
-            sh "aws configure set region $region" 
-            sh "aws configure set aws_access_key_id $accesskey"  
-            sh "aws configure set aws_secret_access_key $secretkey"
-            sh "aws s3 cp deployment.zip $s3Uri"
-        }
-    }
+    // stage('Push'){
+    //     if(env.BRANCH_NAME == 'develop' || env.BRANCH_NAME == 'preprod' || env.BRANCH_NAME == 'master'){
+    //         // sh "aws s3 cp deployment.zip s3://${bucket}/${functionName}/${environments[env.BRANCH_NAME]}/"
+    //         sh "aws configure set region $region" 
+    //         sh "aws configure set aws_access_key_id $accesskey"  
+    //         sh "aws configure set aws_secret_access_key $secretkey"
+    //         sh "aws s3 cp deployment.zip $s3Uri"
+    //     }
+    // }
 
 
     stage('Deploy'){
