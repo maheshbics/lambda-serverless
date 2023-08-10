@@ -26,18 +26,10 @@ node('workers'){
     }
 
     stage('Push'){
-        when {
-            expression {
-                // Specify the branches for which you want to push to S3
-                return env.BRANCH_NAME == 'develop' || env.BRANCH_NAME == 'preprod' || env.BRANCH_NAME == 'master'
-                }
-            }
+        if (env.BRANCH_NAME == 'develop' || env.BRANCH_NAME == 'preprod' || env.BRANCH_NAME == 'master'){
+            sh "aws s3 cp deployment.zip s3://${bucket}/${functionName}/${environments[env.BRANCH_NAME]}/"
         }
-        steps {
-            script {
-                sh "aws s3 cp deployment.zip $s3Uri"
-            }
-        }
+    }
 
 
     // stage('Deploy'){
