@@ -1,10 +1,10 @@
 def bucket = 'oraculi-terraform-states7'
 def functionName = 'serverless-demo'
 def region = 'ap-south-1'
-// def AWS_ACCESS_KEY_ID = 'AKIA4Z5W7B6H2RONA7NN'
-// def AWS_SECRET_ACCESS_KEY = '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'
+def accesskey = 'AKIA4Z5W7B6H2RONA7NN'
+def secretkey = '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'
 def environments = ['develop': 'sandbox', 'preprod': 'staging', 'master': 'production']
-def s3Uri = 's3://${bucket}/${functionName}/${environments[env.BRANCH_NAME]}/'
+def s3Uri = 's3://oraculi-terraform-states7/serverless-demo/sandbox/'
 
 node('workers'){
     stage('Checkout'){
@@ -28,7 +28,10 @@ node('workers'){
     stage('Push'){
         if(env.BRANCH_NAME == 'develop' || env.BRANCH_NAME == 'preprod' || env.BRANCH_NAME == 'master'){
             // sh "aws s3 cp deployment.zip s3://${bucket}/${functionName}/${environments[env.BRANCH_NAME]}/"
-             sh "aws s3 cp deployment.zip ${s3Uri}"
+            sh "aws configure set region $region" 
+            sh "aws configure set aws_access_key_id $accesskey"  
+            sh "aws configure set aws_secret_access_key $secretkey"
+            sh "aws s3 cp deployment.zip $s3Uri"
         }
     }
 }
