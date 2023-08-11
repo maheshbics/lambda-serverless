@@ -1,7 +1,7 @@
 def bucket = 'oraculi-terraform-states7'
 def functionName = 'serverless'
 def region = 'ap-south-1'
-def environments = ['develop': 'sandbox', 'preprod': 'staging', 'master': 'production']
+def environments = ['devlop': 'sandbox', 'prepod': 'staging', 'master': 'production']
 def s3Uri = 's3://${bucket}/${functionName}/${environments[env.BRANCH_NAME]}/'
 
 node('workers'){
@@ -25,13 +25,13 @@ node('workers'){
 
     stage('Push'){
         sh "echo script running"
-        if (env.BRANCH_NAME == 'develop' || env.BRANCH_NAME == 'preprod' || env.BRANCH_NAME == 'master')
+        if (env.BRANCH_NAME == 'devlop' || env.BRANCH_NAME == 'prepod' || env.BRANCH_NAME == 'master')
         sh "aws s3 cp deployment.zip s3://${bucket}/${functionName}/${environments[env.BRANCH_NAME]}/"
         }
 
 
     // stage('Deploy'){
-    //     if(env.BRANCH_NAME == 'develop' || env.BRANCH_NAME == 'preprod' || env.BRANCH_NAME == 'master'){
+    //     if(env.BRANCH_NAME == 'devlop' || env.BRANCH_NAME == 'prepod' || env.BRANCH_NAME == 'master'){
     //         sh """
     //             aws lambda update-function-code --function-name ${functionName} --s3-bucket ${bucket} --s3-key ${functionName}/${environments[env.BRANCH_NAME]}/deployment.zip --region ${region}
     //             version=\$(aws lambda get-alias --function-name ${functionName} --name ${environments[env.BRANCH_NAME]} --region ${region} | jq -r '.FunctionVersion')
@@ -47,4 +47,4 @@ node('workers'){
     //         """
     //     }
     // }
-    }
+}
