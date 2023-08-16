@@ -5,6 +5,7 @@ def environments = ['devlop': 'sandbox', 'prepod': 'staging', 'master': 'product
 def s3Uri = 's3://${bucket}/${functionName}/${environments[env.BRANCH_NAME]}/'
 
 
+
 node('workers'){
     stage('Checkout'){
         checkout scm
