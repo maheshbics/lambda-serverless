@@ -30,7 +30,6 @@ node('workers'){
         sh "aws s3 cp deployment.zip s3://${bucket}/${functionName}/${environments[env.BRANCH_NAME]}/"
      }
 
-
     stage('Deploy'){
         if(env.BRANCH_NAME == 'devlop' || env.BRANCH_NAME == 'prepod' || env.BRANCH_NAME == 'master'){
             sh """
