@@ -24,6 +24,7 @@ node('workers'){
             zip -r deployment.zip main
         """ 
     }
+    
 
     stage('Push'){
         sh "echo script running"
